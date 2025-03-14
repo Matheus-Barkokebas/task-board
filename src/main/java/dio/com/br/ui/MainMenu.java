@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 import dio.com.br.persistence.config.ConnectionConfig;
 import dio.com.br.persistence.entity.BoardColumnEntity;
-import dio.com.br.persistence.entity.BoardColumnKindEnum;
 import dio.com.br.persistence.entity.BoardEntity;
+import dio.com.br.persistence.entity.enums.BoardColumnKindEnum;
 import dio.com.br.service.BoardService;
 
 public class MainMenu {

@@ -1,4 +1,4 @@
-package dio.com.br.persistence.entity;
+package dio.com.br.persistence.entity.enums;
 
 public enum BoardColumnKindEnum {
 

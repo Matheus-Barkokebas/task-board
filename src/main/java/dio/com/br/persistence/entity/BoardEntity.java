@@ -1,5 +1,8 @@
 package dio.com.br.persistence.entity;
 
+import static dio.com.br.persistence.entity.enums.BoardColumnKindEnum.CANCEL;
+import static dio.com.br.persistence.entity.enums.BoardColumnKindEnum.INITIAL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -8,9 +11,6 @@ import org.apache.commons.lang3.builder.EqualsExclude;
 import org.apache.commons.lang3.builder.ToStringExclude;
 
 import lombok.Data;
-
-import static dio.com.br.persistence.entity.BoardColumnKindEnum.CANCEL;
-import static dio.com.br.persistence.entity.BoardColumnKindEnum.INITIAL;
 
 @Data
 public class BoardEntity {
