@@ -20,7 +20,6 @@ public class BoardApplication {
 		}
 		
 		new MainMenu().execute();
-	
 	}
 
 }
