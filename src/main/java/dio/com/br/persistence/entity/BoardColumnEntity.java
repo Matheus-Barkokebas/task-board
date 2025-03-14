@@ -34,8 +34,8 @@ public class BoardColumnEntity {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "order")
-	private int order;
+	@Column(name = "order_number")
+	private Integer order;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "kind")
