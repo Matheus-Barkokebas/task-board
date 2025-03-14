@@ -1,38 +1,45 @@
 package dio.com.br.persistence.entity;
 
-import static dio.com.br.persistence.entity.enums.BoardColumnKindEnum.CANCEL;
-import static dio.com.br.persistence.entity.enums.BoardColumnKindEnum.INITIAL;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import org.apache.commons.lang3.builder.EqualsExclude;
-import org.apache.commons.lang3.builder.ToStringExclude;
-
+import dio.com.br.persistence.entity.enums.BoardColumnKindEnum;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "tb_board")
 public class BoardEntity {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "name")
 	private String name;
-	
-	@ToStringExclude
-	@EqualsExclude
+
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<BoardColumnEntity> boardColumns = new ArrayList<>();
-	
-	public BoardColumnEntity getInitialColumn(){
-        return getFilteredColumn(bc -> bc.getKind().equals(INITIAL));
-    }
 
-    public BoardColumnEntity getCancelColumn(){
-        return getFilteredColumn(bc -> bc.getKind().equals(CANCEL));
-    }
+	public BoardColumnEntity getInitialColumn() {
+		return getFilteredColumn(bc -> bc.getKind().equals(BoardColumnKindEnum.INITIAL));
+	}
 
-    private BoardColumnEntity getFilteredColumn(Predicate<BoardColumnEntity> filter){
-        return boardColumns.stream()
-                .filter(filter)
-                .findFirst().orElseThrow();
-    }
+	public BoardColumnEntity getCancelColumn() {
+		return getFilteredColumn(bc -> bc.getKind().equals(BoardColumnKindEnum.CANCEL));
+	}
+
+	private BoardColumnEntity getFilteredColumn(Predicate<BoardColumnEntity> filter) {
+		return boardColumns.stream().filter(filter).findFirst().orElseThrow();
+	}
 }
